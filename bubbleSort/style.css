@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  gap: 8px;
+  align-items: end;
+}
+
+.box {
+  width: 50px;
+  background: limegreen;
+  position: relative;
+  text-align: center;
+  /* flex-shrink: 0; */
+}
+
+.box.check {
+  background: skyblue;
+}
