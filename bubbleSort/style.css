@@ -7,11 +7,16 @@
 .box {
   width: 50px;
   background: limegreen;
+  /* border: 1px solid; */
   position: relative;
   text-align: center;
   /* flex-shrink: 0; */
 }
 
 .box.check {
+  background: orange;
+}
+
+.box.sorted {
   background: skyblue;
 }

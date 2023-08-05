@@ -37,7 +37,6 @@ class Container {
     this.boxes[idx1] = this.boxes[idx2];
     this.boxes[idx2] = temp;
     // console.log(left);
-    console.log($(left.dom).outerWidth());
     left.pos += $(left.dom).outerWidth() + 8;
     $(left.dom).animate({
       left: `${left.pos}px`,
@@ -47,25 +46,29 @@ class Container {
       left: `${right.pos}px`,
     });
   }
-
+  x = 0;
   sort = async () => {
     for (let i = 0; i < this.arr.length; i++) {
-      for (let j = 0; j < this.arr.length - 1; j++) {
+      for (let j = 0; j < this.arr.length - i - 1; j++) {
+        $(this.boxes[j].dom).addClass("check");
+        $(this.boxes[j + 1].dom).addClass("check");
         if (this.arr[j + 1] < this.arr[j]) {
+          await this.delay(500);
           this.swap(j, j + 1);
           const temp = this.arr[j + 1];
           this.arr[j + 1] = this.arr[j];
           this.arr[j] = temp;
-          await this.delay(500);
-        } else {
-          this.boxes[j].dom.classList.add("check");
         }
+        await this.delay(500);
+        $(this.boxes[j].dom).removeClass("check");
+        $(this.boxes[j + 1].dom).removeClass("check");
       }
+      $(this.boxes[this.arr.length - 1 - i].dom).addClass("sorted");
     }
     console.log("Finished");
   };
 }
-c = new Container(container, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+c = new Container(container, [1, 3, 10, 9, 8, 7, 6, 5, 4]);
 c.draw();
 $("#swap").click(() => {
   c.sort();
@@ -73,7 +76,7 @@ $("#swap").click(() => {
 
 $("#reset").click(() => {
   $(".box").remove();
-  c = new Container(container, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+  c = new Container(container, [1, 3, 10, 9, 8, 7, 6, 5, 4]);
   //   c.boxes = [];
   c.draw();
 });
