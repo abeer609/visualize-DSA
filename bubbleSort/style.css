@@ -1,14 +1,15 @@
 .container {
-  display: flex;
-  gap: 8px;
-  align-items: end;
+  position: relative;
+  height: 200px;
+  width: 375px;
+  margin: auto;
 }
 
 .box {
-  width: 50px;
+  width: calc(10% - 4px);
   background: limegreen;
   /* border: 1px solid; */
-  position: relative;
+  position: absolute;
   text-align: center;
   /* flex-shrink: 0; */
 }
